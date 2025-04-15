@@ -2,16 +2,18 @@ package com.example.manager.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
-public class PlayerService {
-    private final UserRepository userRepository;
+public class UserService {
 
     @Autowired
-    public PlayerService(UserRepository userRepository) {
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -41,6 +43,7 @@ public class PlayerService {
         return null;
     }
 
+    @Transactional
     public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
